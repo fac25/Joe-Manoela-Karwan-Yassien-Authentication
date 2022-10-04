@@ -14,4 +14,8 @@ const cookie = cookieParser(process.env.COOKIE_SECRET);
 
 const server = express();
 
+server.use(cookie);
+
+server.get("/", home.get);
+
 module.exports = server;
