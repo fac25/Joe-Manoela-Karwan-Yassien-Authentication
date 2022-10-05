@@ -17,6 +17,6 @@ const server = express();
 
 server.use(cookies);
 server.get("/stories", stories.get)
-
+server.get("/", home.get);
 
 module.exports = server;

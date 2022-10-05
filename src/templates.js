@@ -1,4 +1,3 @@
-module.exports = { Layout };
 
 function Layout({ title, content }) {
   return /*html*/ `
@@ -17,3 +16,5 @@ function Layout({ title, content }) {
     </html>
   `;
 }
+
+module.exports = { Layout };
