@@ -13,7 +13,35 @@ function homeHtml() {
     return {title, content};
 }
  
-// 
+// Log in HTML
+
+function logInHtml() {
+  const title = "Log In";
+  const content = /* html */ `
+<div class="log-in-container">
+<h1>${title}</h1>
+<form class="log-in-form" method="POST" action="/log-in">
+  <label for="email">Email</label>
+  <input name="email" type="email" />
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" />
+  <button type="submit">log In</button>
+</form>
+</div>`;
+
+return {title, content} 
+}
+
+// log in failed html 
+
+function logInFailHtml() {
+
+  return ` 
+    <h1>login failed</h1>
+    <a href="/sign-up">Sign up</a> 
+        or 
+    <a href="/log-in">log in</a>`
+}
 
 function Layout({ title, content }, error = {}, value = {}) {
 
@@ -49,4 +77,4 @@ function validate(message) {
 }
 
 
-module.exports = { homeHtml, Layout, sanitize, validate };
+module.exports = { homeHtml, logInHtml, logInFailHtml, Layout, sanitize, validate };
