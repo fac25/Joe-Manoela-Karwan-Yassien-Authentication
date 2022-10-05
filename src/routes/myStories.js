@@ -43,7 +43,7 @@ function get(req, res) {
         <nav> 
         <div>
           <a href= "/stories">Home</a>
-          <a href="/myStories/${session.user_id}">Profile</a>
+          <a href="/my-stories/${session.user_id}">Profile</a>
         </div>
 
       
@@ -93,7 +93,7 @@ function post(req, res) {
     if(!req.body.actual_story) {
       return res.send(`
       <h1>Good try! You need to actually write a story please!</h1>
-      <a href="/myStories/${req.params.user_id}">I'm ready to write a story</a>
+      <a href="/my-stories/${req.params.user_id}">I'm ready to write a story</a>
       `)
     }
     createStories(
@@ -102,7 +102,7 @@ function post(req, res) {
       sanitize(req.params.user_id)
     );
     //res.redirect(`/stories`);
-    res.redirect(`/myStories/${req.params.user_id}`);
+    res.redirect(`/my-stories/${req.params.user_id}`);
   }
 }
 
