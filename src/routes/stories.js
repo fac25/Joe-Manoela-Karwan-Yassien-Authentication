@@ -2,10 +2,9 @@
 const { Layout } = require("../templates.js");
 const { getAllStories } = require("../model/stories");
 
-console.log(getAllStories)
 
 function get(req, res) {
-  const title = "Your secrets";
+  const title = "Sroties";
   const content = /*html*/ `
       <div class="Cover">
         <h1>${title}</h1>
