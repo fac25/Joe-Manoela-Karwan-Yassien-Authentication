@@ -1,3 +1,19 @@
+// Home HTML
+function homeHtml() {
+  const title = "Authorise Yourself";
+  const content = /*html*/ `
+    <div class ="container">
+    <h1>${title}</h1>
+      <nav class ="flex_container">
+            <a href="/sign-up">Sign Up</a> 
+            <a href="/log-in">Log In</a>
+     </nav>
+ </div>
+    `
+    return {title, content};
+}
+ 
+// 
 
 function Layout({ title, content }, error = {}, value = {}) {
 
@@ -32,4 +48,5 @@ function validate(message) {
   }
 }
 
-module.exports = { Layout, sanitize, validate };
+
+module.exports = { homeHtml, Layout, sanitize, validate };

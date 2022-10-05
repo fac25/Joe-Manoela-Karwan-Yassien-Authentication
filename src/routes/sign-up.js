@@ -4,7 +4,6 @@ const { checkEmailExists, createUser } = require("../model/users.js");
 const bcrypt = require("bcryptjs");
 
 
-
 function get(req, res) {
   const title = "Create Your Account";
   const content = /*html*/ `
