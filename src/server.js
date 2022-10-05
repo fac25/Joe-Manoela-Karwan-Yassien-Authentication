@@ -1,13 +1,6 @@
 // imports node modules from npm
 const cookieParser = require("cookie-parser");
 const express = require("express");
-
-const server = express();
-
-//To add css file
-const staticHandler = express.static("public");
-
-// Import routes from routes folder
 const home = require("./routes/home.js");
 const logIn = require("./routes/log-in.js");
 const logOut = require("./routes/log-out.js");
@@ -16,6 +9,13 @@ const stories = require("./routes/stories.js");
 const myStories = require("./routes/myStories.js");
 const deleteFn = require("./routes/delete.js");
 const users = require("./routes/users.js");
+
+const server = express();
+
+//To add css file
+const staticHandler = express.static("public");
+
+// Import routes from routes folder
 
 const body = express.urlencoded({ extended: false });
 const cookies = cookieParser(process.env.COOKIE_SECRET);
