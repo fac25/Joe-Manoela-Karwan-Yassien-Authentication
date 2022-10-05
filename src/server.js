@@ -19,10 +19,13 @@ const server = express();
 
 server.use(cookies);
 
+server.get("/sign-up", signUp.get);
+server.post("/sign-up", body, signUp.post);
 server.get("/", home.get);
 server.get("/stories", stories.get)
 server.get("/myStories/:user_id", myStories.get)
 server.post("/myStories/:user_id", body, myStories.post)
 server.post("/delete", body, deleteFn.post)
+
 
 module.exports = server;
