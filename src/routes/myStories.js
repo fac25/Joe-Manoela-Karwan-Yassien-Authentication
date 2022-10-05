@@ -30,7 +30,7 @@ function get(req, res) {
     <label for="story_title">Tell us your story's title:</label>
     <input type="text" name="story_title" id="story_title">
       
-    <label for="actual_story">Write your story here:</label>
+    <label for="actual_story">What's your story, user?</label>
       <textarea name="actual_story" rows="4" cols="30"></textarea>
       <button>Share your story!</button>
    </form>`;
