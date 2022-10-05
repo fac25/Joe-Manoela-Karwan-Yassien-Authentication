@@ -50,7 +50,7 @@ function post(req, res) {
     <a href="/log-in">log in</a>`);
   } else {
     bcrypt.compare(password, user.hash).then((match) => {
-      if (match === false) {
+      if (!match) {
         return res.status(400).send(`
     
             <h1>login failed</h1>
