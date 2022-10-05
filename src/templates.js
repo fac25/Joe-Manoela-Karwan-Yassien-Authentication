@@ -106,9 +106,45 @@ function submitStoryHtml(session_user_id, pageOwners_user_id ) {
   return {title, content}
 }
 
+// Sign-up HTML
+function signUpHtml(value = {}, error = {}) {
+
+  const title = "Create your account";
+  const content = /*html*/ `
+    <div class="sign-up-container">
+    <h1>${title}</h1>
+    <form method="POST" class="sign-up-form">
+    <label for="username">username</label>
+    <input id="username" name="username" type="text" value='${value.username ? value.username : ''}'/>
+    ${validate(error.username)}
+    <label for="email">email</label>
+    <input id="email" name="email" type="email" value='${value.email ? value.email : ''}'/>
+    ${validate(error.email)}
+    <label for="password">password</label>
+    <input id="password" name="password" type="password" />
+    ${validate(error.password)}
+    <button>Submit</button>
+  </form>
+  </div>`;
+
+return {title, content}
+}
+
+// Email exist HTML
+function emailExistHtml() {
+  return /*html*/ `
+  <h1>Email already registered</h1>
+  <p> 
+  please <a href="/log-in">log-in</a>
+    or 
+    <a href="/sign-up">sign-up</a> with another email
+  </p>
+  `
+}
+
 // Layout HTML
 
-function Layout({ title, content }, error = {}, value = {}) {
+function Layout({ title, content }) {
 
   return /*html*/ `
     <!doctype html>
@@ -141,4 +177,14 @@ function validate(message) {
   }
 }
 
-module.exports = { homeHtml, logInHtml, logInFailHtml, logInFirstHtml, submitStoryHtml, Layout, sanitize, validate };
+module.exports = { 
+  homeHtml, 
+  logInHtml, 
+  logInFailHtml, 
+  logInFirstHtml, 
+  submitStoryHtml, 
+  signUpHtml, 
+  emailExistHtml, 
+  Layout, 
+  sanitize, 
+  validate };
