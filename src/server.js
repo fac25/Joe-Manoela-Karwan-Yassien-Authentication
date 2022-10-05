@@ -26,6 +26,7 @@ server.get("/stories", stories.get)
 server.get("/myStories/:user_id", myStories.get)
 server.post("/myStories/:user_id", body, myStories.post)
 server.post("/delete", body, deleteFn.post)
+server.post("/logout", logOut.post)
 
 
 module.exports = server;
