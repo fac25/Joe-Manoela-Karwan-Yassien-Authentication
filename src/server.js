@@ -10,12 +10,13 @@ const signUp = require("./routes/sign-up.js");
 const stories = require("./routes/stories.js");
 const users = require("./routes/users.js");
 
-const cookie = cookieParser(process.env.COOKIE_SECRET);
+const body = express.urlencoded({ extended: false });
+const cookies = cookieParser(process.env.COOKIE_SECRET);
 
 const server = express();
 
-server.use(cookie);
-
+server.use(cookies);
+server.get("/stories", stories.get)
 server.get("/", home.get);
 
 module.exports = server;
