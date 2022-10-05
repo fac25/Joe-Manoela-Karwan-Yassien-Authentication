@@ -1,5 +1,4 @@
-const { logInFirstHtml, Layout, sanitize } = require("../templates.js");
-const { getAllMyStories } = require("../model/myStories");
+const { logInFirstHtml, submitStoryHtml, Layout, sanitize } = require("../templates.js");
 const { getSession } = require("../model/sessions.js");
 const { createStories } = require("../model/stories");
 
@@ -15,54 +14,8 @@ function get(req, res) {
     return res.status(401).send(logInFirstHtml());
   }
 
-  const form = /*html*/ `
-
-    <form class="sign-up-form" method="POST" class="">
-    <label for="story_title">Tell us your story's title:</label>
-    <input type="text" name="story_title" id="story_title">
-      
-    <label for="actual_story">What's your story, user?</label>
-      <textarea name="actual_story" rows="4" cols="30"></textarea>
-      <button>Share your story!</button>
-   </form>`;
-
-  const title = `My Stories`;
-  const content = /*html*/ `
-      <div class="stories-container">
-        <h1>${title}</h1>
-
-        <nav> 
-        <div>
-          <a href= "/stories">Home</a>
-          <a href="/my-stories/${session.user_id}">Profile</a>
-        </div>
-
-      
-          <form method="POST" action="/logout"><button>Log out</button></form>
-        </nav>
-
-       <div class="sign-up-container"><h1>write your story</h1>${form}</div>
-        
-        <ul class="story-card">
-          ${getAllMyStories(pageOwners_user_id)
-            .map(
-              (story) => `
-              <li>
-                <h2>${story.story_title}</h2>
-                <h3>${story.username}</h3>
-                <p>${story.actual_story}</p>
-                <form method="post" action="/delete">
-                <input type="hidden" name="id" value="${story.id}" readonly>
-                <button type="submit">Delete</button>
-                </form>
-              </li>
-              `
-            )
-            .reverse()
-            .join("")}
-        </ul>
-      </div>
-    `;
+  const {title, content} = submitStoryHtml(session.user_id, pageOwners_user_id);
+  
   const body = Layout({ title, content });
   res.send(body);
 }
