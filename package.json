@@ -1,4 +1,7 @@
 {
+
+
+
   "scripts": {
     "start": "node src/index.js",
     "dev": "DB_FILE=db.sqlite COOKIE_SECRET=abc nodemon src/index.js",
@@ -12,6 +15,8 @@
   },
   "dependencies": {
     "better-sqlite3": "^7.6.2",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.1",
     "nodemon": "^2.0.20"
   }
