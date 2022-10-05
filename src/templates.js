@@ -43,6 +43,19 @@ function logInFailHtml() {
     <a href="/log-in">log in</a>`
 }
 
+// Login failed HTML
+
+function logInFirstHtml() {
+  return `
+  <h1>Please log-in first to see your stories:</h1>
+  <nav>
+        <a href="/log-in">log in</a>
+  </nav>
+`
+}
+
+// Layout HTML
+
 function Layout({ title, content }, error = {}, value = {}) {
 
   return /*html*/ `
@@ -76,5 +89,4 @@ function validate(message) {
   }
 }
 
-
-module.exports = { homeHtml, logInHtml, logInFailHtml, Layout, sanitize, validate };
+module.exports = { homeHtml, logInHtml, logInFailHtml, logInFirstHtml, Layout, sanitize, validate };

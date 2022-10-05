@@ -1,27 +1,18 @@
-const { Layout, sanitize } = require("../templates.js");
+const { logInFirstHtml, Layout, sanitize } = require("../templates.js");
 const { getAllMyStories } = require("../model/myStories");
 const { getSession } = require("../model/sessions.js");
 const { createStories } = require("../model/stories");
+
 
 function get(req, res) {
   const sid = req.signedCookies.sid;
   const session = getSession(sid);
   const pageOwners_user_id = Number(req.params.user_id);
 
-  if (sid === undefined || session === undefined) {
-    return res.status(401).send(/*html*/ `
-        <h1>Please log-in first to see your stories:</h1>
-        <nav>
-              <a href="/log-in">log in</a>
-        </nav>
-      `);
+  if (!sid  || !session) {
+    return res.status(401).send(logInFirstHtml());
   } else if (session.user_id != pageOwners_user_id) {
-    return res.status(401).send(/*html*/ `
-      <h1>Please log-in first to see your stories:</h1>
-      <nav>
-            <a href="/log-in">log in</a>
-      </nav>
-    `);
+    return res.status(401).send(logInFirstHtml());
   }
 
   const form = /*html*/ `
