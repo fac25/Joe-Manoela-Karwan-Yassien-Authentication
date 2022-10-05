@@ -5,7 +5,7 @@ function Layout({ title, content }, error = {}, value = {}) {
     <!doctype html>
     <html lang="en">
       <head>
-      <link rel ="stylesheet" href ="style.css">
+      <link rel ="stylesheet" href ="../style.css">
         <meta charset="UTF-8">
         <title>${title}</title>
       </head>
