@@ -15,4 +15,12 @@ function getAllMyStories(id) {
   return select_all_my_stories.all(id);
 }
 
-module.exports = { getAllMyStories };
+const delete_story = db.prepare(/*sql*/ `
+  DELETE FROM stories WHERE id = ?
+`);
+
+function removeStory(id) {
+  return delete_story.run(id);
+}
+
+module.exports = { getAllMyStories, removeStory };

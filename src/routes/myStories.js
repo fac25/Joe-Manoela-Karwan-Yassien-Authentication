@@ -43,6 +43,10 @@ function get(req, res) {
                 <h2>${story.story_title}</h2>
                 <h3>${story.username}</h3>
                 <p>${story.actual_story}</p>
+                <form method="post" action="/delete">
+                <input type="hidden" name="id" value="${story.id}" readonly>
+                <button type="submit">Delete</button>
+                </form>
               </li>
               `
             ).reverse()
