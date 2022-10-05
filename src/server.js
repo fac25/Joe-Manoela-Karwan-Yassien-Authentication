@@ -16,7 +16,9 @@ const cookies = cookieParser(process.env.COOKIE_SECRET);
 const server = express();
 
 server.use(cookies);
-server.get("/stories", stories.get)
+server.get("/stories", stories.get);
 server.get("/", home.get);
+server.get("/sign-up", signUp.get);
+//server.post("/sign-up", body, signUp.post);
 
 module.exports = server;
