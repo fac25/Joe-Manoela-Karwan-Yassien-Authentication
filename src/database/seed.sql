@@ -18,7 +18,7 @@ INSERT INTO stories VALUES
   (2, 'The little mermaid', 'b', 2, '2020-09-25 21:00:00'),
   (3, 'Aladdin', 'c', 4, '2020-09-26 20:00:00'),
   (4, 'Cinderella', 'd', 7, '2020-09-27 19:00:00'),
-  (5, 'The hobbit', 'e', 3, '2020-09-28 18:00:00'),
+  (5, 'The hobbit', 'e', 4, '2020-09-28 18:00:00'),
   (6, 'Game of Thrones', 'f', 8, '2020-09-29 16:00:00')
 
 ON CONFLICT DO NOTHING;
