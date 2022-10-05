@@ -1,9 +1,16 @@
 const { Layout } = require("../templates.js");
-const { createSession } = require("../model/sessions.js");
+const { createSession, getSession } = require("../model/sessions.js");
 const { getUserByEmail } = require("../model/users.js");
 const bcrypt = require("bcryptjs");
 
 function get(req, res) {
+  const sid = req.signedCookies.sid;
+  const session = getSession(sid);
+
+  if (session) {
+    return res.redirect("/stories")
+  }
+
   const title = "Log In";
   const content = `
   <header>
