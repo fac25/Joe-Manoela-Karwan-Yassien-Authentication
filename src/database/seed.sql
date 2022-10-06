@@ -14,12 +14,12 @@ INSERT INTO users VALUES
 ON CONFLICT DO NOTHING;
 
 INSERT INTO stories VALUES
-  (1, 'Little red riding hood', 'a', 9, '2020-09-24 22:00:00'),
-  (2, 'The little mermaid', 'b', 2, '2020-09-25 21:00:00'),
-  (3, 'Aladdin', 'c', 4, '2020-09-26 20:00:00'),
-  (4, 'Cinderella', 'd', 7, '2020-09-27 19:00:00'),
-  (5, 'The hobbit', 'e', 4, '2020-09-28 18:00:00'),
-  (6, 'Game of Thrones', 'f', 8, '2020-09-29 16:00:00')
+  (1, 'Little red riding hood', 'A young girl who comes across a cunning wolf on the way to her grandmas home', 9, '2020-09-24 22:00:00'),
+  (2, 'The little mermaid', 'A young mermaid is willing to give up her life in the sea as a mermaid to gain a human soul', 2, '2020-09-25 21:00:00'),
+  (3, 'Aladdin', 'A lovable street urchin meets Princess Jasmine, the beautiful daughter of the sultan of Agrabah', 4, '2020-09-26 20:00:00'),
+  (4, 'Cinderella', 'A dreamer is trapped within a step-family who does not love or appreciate her and is enslaved by her evil stepmother and stepsisters', 7, '2020-09-27 19:00:00'),
+  (5, 'The hobbit', 'Home-loving Bilbo Baggins, the titular hobbit, goes on a journey to win a share of the treasure guarded by a dragon named Smaug', 4, '2020-09-28 18:00:00'),
+  (6, 'Game of Thrones', 'Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia', 8, '2020-09-29 16:00:00')
 
 ON CONFLICT DO NOTHING;
 

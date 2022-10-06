@@ -6,6 +6,7 @@ const { Layout } = require("../templates.js");
     const content = /*html*/ `
     <div>
       <h1>${title}</h1>
+      <h2>What's your story, user?</h2>
       <nav>
             <a href="/sign-up">Sign up</a> 
         or 
