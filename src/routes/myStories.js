@@ -6,17 +6,23 @@ const { createStories } = require("../model/stories");
 function get(req, res) {
   const sid = req.signedCookies.sid;
   const session = getSession(sid);
-//   const requestingPersons_user_id = session.user_id;
   const pageOwners_user_id = Number(req.params.user_id);
 
-    if (sid === undefined || session === undefined || requestingPersons_user_id != pageOwners_user_id ) {
-      return res.status(401).send(/*html*/ `
+  if (sid === undefined || session === undefined) {
+    return res.status(401).send(/*html*/ `
         <h1>Please log-in first to see your stories:</h1>
         <nav>
               <a href="/log-in">log in</a>
         </nav>
       `);
-    }
+  } else if (session.user_id != pageOwners_user_id) {
+    return res.status(401).send(/*html*/ `
+      <h1>Please log-in first to see your stories:</h1>
+      <nav>
+            <a href="/log-in">log in</a>
+      </nav>
+    `);
+  }
 
   const form = /*html*/ `
     <form method="POST" class="">
@@ -32,6 +38,11 @@ function get(req, res) {
   const content = /*html*/ `
       <div class="">
         <h1>${title}</h1>
+
+        <nav> 
+          <a href="/stories">See everyone else's stories</a>
+          <form method="POST" action="/logout"><button>Log out</button></form>
+        </nav>
 
         <section>${form}</section>
         
@@ -49,7 +60,8 @@ function get(req, res) {
                 </form>
               </li>
               `
-            ).reverse()
+            )
+            .reverse()
             .join("")}
         </ul>
       </div>
@@ -59,25 +71,27 @@ function get(req, res) {
 }
 
 function post(req, res) {
-    const sid = req.signedCookies.sid;
-    const session = getSession(sid);
-    const current_user = session && session.user_id;
+  const sid = req.signedCookies.sid;
+  const session = getSession(sid);
+  const current_user = session && session.user_id;
 
-    if (req.params.user_id != current_user) {
-      return res.status(401).send(/* html */`
+  if (req.params.user_id != current_user) {
+    return res.status(401).send(/* html */ `
       <h1>Story submission failed</h1>
       <h2>Please log-in first to submit a story:</h2>
         <nav>
               <a href="/log-in">log in</a>
         </nav>
       `);
-    }
-    else {
-        createStories(req.body.story_title, req.body.actual_story, req.params.user_id);
-        //res.redirect(`/stories`);
-        res.redirect(`/myStories/${req.params.user_id}`);
-    }
-    
+  } else {
+    createStories(
+      req.body.story_title,
+      req.body.actual_story,
+      req.params.user_id
+    );
+    //res.redirect(`/stories`);
+    res.redirect(`/myStories/${req.params.user_id}`);
+  }
 }
 
 module.exports = { get, post };

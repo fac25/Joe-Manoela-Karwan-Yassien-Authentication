@@ -15,13 +15,17 @@ function get(req, res) {
             <a href="/log-in">log in</a>
       </nav> 
     `);
-  }
-  else {
-  const title = "Stories";
-  const content = /*html*/ `
+  } else {
+    const title = "Stories";
+    const content = /*html*/ `
       <div class="">
         <h1>${title}</h1>
-        <form method="POST" action="/logout"><button>Log out</button></form>
+        <nav> 
+          <a href="/myStories/${
+            session.user_id
+          }">See your stories and create new tales</a>
+          <form method="POST" action="/logout"><button>Log out</button></form>
+        </nav>
         <ul class="">
           ${getAllStories()
             .map(
@@ -32,17 +36,15 @@ function get(req, res) {
                 <p>${story.actual_story}</p>
               </li>
               `
-            ).reverse()
+            )
+            .reverse()
             .join("")}
         </ul>
       </div>
     `;
-  const body = Layout({ title, content });
-  res.send(body);
+    const body = Layout({ title, content });
+    res.send(body);
+  }
 }
 
-}
-
-
-
-module.exports = { get }
+module.exports = { get };
