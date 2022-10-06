@@ -19,4 +19,13 @@ function createUser(user_name, email, hash) {
   return create_user.get({ user_name, email, hash });
 }
 
-module.exports = { checkEmailExists, createUser };
+const select_user_by_email = db.prepare(/* sql*/ `
+SELECT id, email, hash FROM users
+WHERE email = ?  
+`);
+
+function getUserByEmail(email) {
+  return select_user_by_email.get(email);
+}
+
+module.exports = { checkEmailExists, createUser, getUserByEmail };
