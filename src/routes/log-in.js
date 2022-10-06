@@ -1,9 +1,16 @@
 const { Layout } = require("../templates.js");
-const { createSession } = require("../model/sessions.js");
+const { createSession, getSession } = require("../model/sessions.js");
 const { getUserByEmail } = require("../model/users.js");
 const bcrypt = require("bcryptjs");
 
 function get(req, res) {
+  const sid = req.signedCookies.sid;
+  const session = getSession(sid);
+
+  if (session) {
+    return res.redirect("/stories")
+  }
+
   const title = "Log In";
   const content = /* html */ `
 
@@ -30,10 +37,10 @@ function get(req, res) {
 }
 
 function post(req, res) {
-  const { email, passowrd } = req.body;
+  const { email, password } = req.body;
   const user = getUserByEmail(email);
 
-  if (!email || !passowrd || !user) {
+  if (!email || !password || !user) {
     return res.status(400).send(`
     
     <h1>login failed</h1>
@@ -42,7 +49,7 @@ function post(req, res) {
        or 
     <a href="/log-in">log in</a>`);
   } else {
-    bcrypt.compare(passowrd, user.hash).then((match) => {
+    bcrypt.compare(password, user.hash).then((match) => {
       if (match === false) {
         return res.status(400).send(`
     
@@ -54,7 +61,7 @@ function post(req, res) {
         const sessionId = createSession(user.id);
         res.cookie("sid", sessionId, {
           signed: true,
-          maxAge: 6000,
+          maxAge: 1000 * 60 * 60 * 24 * 7,
           sameSite: "lax", //protect from csrf
           httpOnly: true, //protect from xss
         });

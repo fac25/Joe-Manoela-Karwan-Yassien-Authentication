@@ -1,4 +1,6 @@
-function Layout({ title, content }) {
+
+function Layout({ title, content }, error = {}, value = {}) {
+
   return /*html*/ `
     <!doctype html>
     <html lang="en">
@@ -18,4 +20,16 @@ function Layout({ title, content }) {
   `;
 }
 
-module.exports = { Layout };
+function sanitize(str) {
+  return str.replaceAll('<', '&lt')
+}
+
+function validate(message) {
+  if (message) {
+    return `<span style="color: red">${message}</span>`;
+  } else {
+    return "";
+  }
+}
+
+module.exports = { Layout, sanitize, validate };

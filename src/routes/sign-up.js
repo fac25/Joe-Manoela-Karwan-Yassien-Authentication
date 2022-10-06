@@ -1,7 +1,9 @@
-const { Layout } = require("../templates.js");
+const { Layout, sanitize, validate } = require("../templates.js");
 const { createSession } = require("../model/sessions.js");
 const { checkEmailExists, createUser } = require("../model/users.js");
 const bcrypt = require("bcryptjs");
+
+
 
 function get(req, res) {
   const title = "Create Your Account";
@@ -11,16 +13,15 @@ function get(req, res) {
   <h1>${title}</h1>
 <form class="sign-up-form" method="POST">
 
-  <label for="username">Username</label>
-  <input id="username" name="username" type="text" />
+  <label for="username">username</label>
+  <input id="username" name="username" type="text"/>
 
-    <label for="email">Email</label>
+    <label for="email">email</label>
     <input id="email" name="email" type="email" />
 
 
     <label for="password">Password</label>
     <input id="password" name="password" type="password" />
-
 
   <button>Submit</button>
 </form>
@@ -31,11 +32,52 @@ function get(req, res) {
 }
 
 function post(req, res) {
-  const { username, email, password } = req.body;
-
+  let error = {};
+  let value = {};
+  
+  let { username, email, password } = req.body;
+  username = sanitize(username);
+  error = {};
   if (!username || !email || !password) {
-    // to do validation
-    return res.status(400).send(`<h1>Please complete all fields</h1>`);
+    
+    if (!username && !email) {
+      error.username = "Please enter your username";
+      
+      error.email = "Please enter your email";
+    }
+    if (!username) {
+      error.username = "Please enter your username";
+      // error.email = "";
+      value.email = email;
+    }
+    if (!email) {
+      error.email = "Please enter your email";
+      value.username = username;
+    }
+    if (!password) {
+      error.password = "Please enter a password";
+    }
+    const title = "Create your account";
+    const content = /*html*/ `
+    <div>
+    <h1>${title}</h1>
+    <form method="POST">
+    <label for="username">username</label>
+    <input id="username" name="username" type="text" value='${value.username ? value.username : ''}'/>
+    ${validate(error.username)}
+    <label for="email">email</label>
+    <input id="email" name="email" type="email" value='${value.email ? value.email : ''}'/>
+    ${validate(error.email)}
+    <label for="password">password</label>
+    <input id="password" name="password" type="password" />
+    ${validate(error.password)}
+    <button>Submit</button>
+  </form>
+  </div>`;
+
+  const body = Layout({ title, content }, error, value);
+
+     return res.status(400).send(body)
   }
 
   const emailExists = checkEmailExists(email); // return either undefined(=unique_email), {email: email}

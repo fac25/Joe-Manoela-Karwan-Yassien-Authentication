@@ -1,5 +1,22 @@
 const { Layout } = require("../templates.js");
-// import session model
+
+ function get(req, res) {
+    const title = "Authorise yourself";
+    const content = /*html*/ `
+    <div>
+      <h1>${title}</h1>
+      <h2>What's your story, user?</h2>
+      <nav>
+            <a href="/sign-up">Sign up</a> 
+        or 
+            <a href="/log-in">log in</a>
+        </nav>
+    </div>
+    `
+    const body = Layout({title, content});
+    // destructuring?
+    res.send(body);
+ }
 
 function get(req, res) {
   const title = "Authorise Yourself";
