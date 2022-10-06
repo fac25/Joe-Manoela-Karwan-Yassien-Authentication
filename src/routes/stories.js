@@ -6,17 +6,17 @@ function get(req, res) {
   const sid = req.signedCookies.sid;
   const session = getSession(sid);
 
-  // if (sid === undefined || session === undefined) {
-  //   return res.status(401).send(/*html*/ `
-  //     <h1>Please log-in (or sign-up) first to see all stories:</h1>
-  //     <nav>
-  //           <a href="/sign-up">Sign up</a> 
-  //       or 
-  //           <a href="/log-in">log in</a>
-  //     </nav> 
-  //   `);
-  // }
-
+  if (sid === undefined || session === undefined) {
+    return res.status(401).send(/*html*/ `
+      <h1>Please log-in (or sign-up) first to see all stories:</h1>
+      <nav>
+            <a href="/sign-up">Sign up</a> 
+        or 
+            <a href="/log-in">log in</a>
+      </nav> 
+    `);
+  }
+  else {
   const title = "Stories";
   const content = /*html*/ `
       <div class="">
@@ -39,6 +39,8 @@ function get(req, res) {
     `;
   const body = Layout({ title, content });
   res.send(body);
+}
+
 }
 
 

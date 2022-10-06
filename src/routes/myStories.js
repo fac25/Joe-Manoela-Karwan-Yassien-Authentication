@@ -6,17 +6,17 @@ const { createStories } = require("../model/stories");
 function get(req, res) {
   const sid = req.signedCookies.sid;
   const session = getSession(sid);
-  //const requestingPersons_user_id = session.user_id;
+//   const requestingPersons_user_id = session.user_id;
   const pageOwners_user_id = Number(req.params.user_id);
 
-  //   if (sid === undefined || session === undefined || requestingPersons_user_id != pageOwners_user_id ) {
-  //     return res.status(401).send(/*html*/ `
-  //       <h1>Please log-in first to see your stories:</h1>
-  //       <nav>
-  //             <a href="/log-in">log in</a>
-  //       </nav>
-  //     `);
-  //   }
+    if (sid === undefined || session === undefined || requestingPersons_user_id != pageOwners_user_id ) {
+      return res.status(401).send(/*html*/ `
+        <h1>Please log-in first to see your stories:</h1>
+        <nav>
+              <a href="/log-in">log in</a>
+        </nav>
+      `);
+    }
 
   const form = /*html*/ `
     <form method="POST" class="">
@@ -59,15 +59,25 @@ function get(req, res) {
 }
 
 function post(req, res) {
-    // const sid = req.signedCookies.sid;
-    // const session = getSession(sid);
-    // const current_user = session && session.user_id;
-    // if (!req.body.content || !current_user) {
-    //   return res.status(401).send("<h1>Story submission failed</h1>");
-    // }
-    createStories(req.body.story_title, req.body.actual_story, req.params.user_id);
-    //res.redirect(`/stories`);
-    res.redirect(`/myStories/${req.params.user_id}`);
+    const sid = req.signedCookies.sid;
+    const session = getSession(sid);
+    const current_user = session && session.user_id;
+
+    if (req.params.user_id != current_user) {
+      return res.status(401).send(/* html */`
+      <h1>Story submission failed</h1>
+      <h2>Please log-in first to submit a story:</h2>
+        <nav>
+              <a href="/log-in">log in</a>
+        </nav>
+      `);
+    }
+    else {
+        createStories(req.body.story_title, req.body.actual_story, req.params.user_id);
+        //res.redirect(`/stories`);
+        res.redirect(`/myStories/${req.params.user_id}`);
+    }
+    
 }
 
 module.exports = { get, post };
