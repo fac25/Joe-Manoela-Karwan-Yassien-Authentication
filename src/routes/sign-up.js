@@ -1,4 +1,4 @@
-const { Layout } = require("../templates.js");
+const { Layout, sanitize } = require("../templates.js");
 const { createSession } = require("../model/sessions.js");
 const { checkEmailExists, createUser } = require("../model/users.js");
 const bcrypt = require("bcryptjs");
@@ -28,7 +28,8 @@ function get(req, res) {
 }
 
 function post(req, res) {
-  const { username, email, password } = req.body;
+  let { username, email, password } = req.body;
+  username = sanitize(username);
 
   if (!username || !email || !password) {
     // to do validation
