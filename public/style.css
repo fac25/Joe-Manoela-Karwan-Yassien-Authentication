@@ -1,0 +1,130 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+:root {
+  --primary: #e0afa0;
+  --secondary: #f4f3ee;
+  --primary-text: #463f38;
+  --secondary-text: #bcb8b1;
+}
+
+.container,
+.sign-up-container,
+.log-in-container {
+  width: 30%;
+  margin: 20vh auto 0 auto;
+  height: 40vh;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+}
+
+.container h1,
+.sign-up-container h1,
+.log-in-container h1 {
+  text-align: center;
+  padding: 30px 0;
+  font-size: 1.7rem;
+  color: var(--primary-text);
+}
+
+.flex_container,
+.sign-up-form,
+.log-in-form {
+  width: 50%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flex_container a,
+.sign-up-form button,
+.log-in-form button {
+  border: 1px solid var(--primary);
+  padding: 5px 16px;
+  border-radius: 5px;
+  color: var(--primary-text);
+  cursor: pointer;
+}
+
+.flex_container a:hover,
+.sign-up-form button:hover,
+.log-in-form button:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.sign-up-container h1 {
+  margin: 0;
+}
+
+.sign-up-form,
+.log-in-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+}
+
+.sign-up-form button,
+.log-in-form button {
+  margin-top: 10px;
+  background-color: white;
+}
+
+.stories-container {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.stories-container h1 {
+  text-align: center;
+  padding: 16px 0;
+  margin-top: 20px;
+  color: var(--primary-text);
+}
+
+.stories-container nav {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  border-bottom: 1px solid var(--primary);
+}
+
+.stories-container nav button {
+  border: none;
+}
+
+.stories-container nav div a,
+.stories-container nav button {
+  display: inline-block;
+  padding: 16px 16px;
+  background-color: white;
+  color: var(--primary-text);
+  cursor: pointer;
+}
+
+.stories-container nav div a:hover,
+.stories-container nav button:hover {
+  color: var(--primary);
+}
+
+.story-card li {
+  border: 1px solid var(--primary);
+  margin: 10px 0;
+  padding: 20px 30px;
+}
+
+.story-card li > * {
+  padding: 10px 0;
+}
+
+.story-card li h3 {
+  font-size: 1rem;
+}
+
+.story-card li p {
+  text-align: justify;
+}

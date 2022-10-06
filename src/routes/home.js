@@ -1,22 +1,20 @@
 const { Layout } = require("../templates.js");
-// import session model 
- 
- function get(req, res) {
-    const title = "Authorise yourself";
-    const content = /*html*/ `
-    <div>
+// import session model
+
+function get(req, res) {
+  const title = "Authorise Yourself";
+  const content = /*html*/ `
+    <div class ="container">
       <h1>${title}</h1>
-      <nav>
-            <a href="/sign-up">Sign up</a> 
-        or 
-            <a href="/log-in">log in</a>
-        </nav>
-    </div>
-    `
-    const body = Layout({title, content});
-    // destructuring?
-    res.send(body);
- }
+      <nav class ="flex_container">
+            <a href="/sign-up">Sign Up</a> 
+            <a href="/log-in">Log In</a>
+     </nav>
+ </div>
+    `;
+  const body = Layout({ title, content });
+  // destructuring?
+  res.send(body);
+}
 
-
- module.exports = { get }
+module.exports = { get };

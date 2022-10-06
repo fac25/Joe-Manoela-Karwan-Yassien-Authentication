@@ -4,20 +4,23 @@ const { checkEmailExists, createUser } = require("../model/users.js");
 const bcrypt = require("bcryptjs");
 
 function get(req, res) {
-  const title = "Create your account";
+  const title = "Create Your Account";
   const content = /*html*/ `
  
-  <div>
+<div class= "sign-up-container">
   <h1>${title}</h1>
-<form method="POST">
-  <label for="username">username</label>
+<form class="sign-up-form" method="POST">
+
+  <label for="username">Username</label>
   <input id="username" name="username" type="text" />
 
-  <label for="email">email</label>
-  <input id="email" name="email" type="email" />
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" />
 
-  <label for="password">password</label>
-  <input id="password" name="password" type="password" />
+
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" />
+
 
   <button>Submit</button>
 </form>
