@@ -21,6 +21,7 @@ function get(req, res) {
   const content = /*html*/ `
       <div class="">
         <h1>${title}</h1>
+        <form method="POST" action="/logout"><button>Log out</button></form>
         <ul class="">
           ${getAllStories()
             .map(

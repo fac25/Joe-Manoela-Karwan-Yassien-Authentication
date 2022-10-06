@@ -57,10 +57,9 @@ function post(req, res) {
     res.cookie("sid", newSessionId, {
       signed: true,
       httpOnly: true,
-      maxAge: 6000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
       sameSite: "lax",
     });
-
     res.redirect("/stories");
   });
 
