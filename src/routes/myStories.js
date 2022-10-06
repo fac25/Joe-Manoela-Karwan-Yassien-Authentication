@@ -84,6 +84,12 @@ function post(req, res) {
         </nav>
       `);
   } else {
+    if(!req.body.actual_story) {
+      return res.send(`
+      <h1>Good try! You need to actually write a story please!</h1>
+      <a href="/myStories/${req.params.user_id}">I'm ready to write a story</a>
+      `)
+    }
     createStories(
       sanitize(req.body.story_title),
       sanitize(req.body.actual_story),
