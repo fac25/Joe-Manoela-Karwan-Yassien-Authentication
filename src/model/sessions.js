@@ -22,4 +22,13 @@ function getSession(sid) {
   return select_session.get(sid);
 }
 
-module.exports = { createSession, getSession };
+const remove_session = db.prepare(/*sql*/ `
+DELETE FROM sessions
+WHERE id = ?
+`)
+
+function removeSession(sid) {
+  return remove_session.run(sid);
+}
+
+module.exports = { createSession, getSession, removeSession };
