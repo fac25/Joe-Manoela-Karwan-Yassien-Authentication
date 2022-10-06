@@ -12,22 +12,25 @@ function get(req, res) {
   }
 
   const title = "Log In";
-  const content = `
-  <header>
-     <h1>${title}</h1>
-  </header>
+  const content = /* html */ `
 
-<section>
-<form method="POST" action="/log-in">
-  <label for="email">email</label>
+
+<div class="log-in-container">
+
+<h1>${title}</h1>
+
+<form class="log-in-form" method="POST" action="/log-in">
+
+  <label for="email">Email</label>
   <input name="email" type="email" />
 
-  <label for="password">password</label>
+  <label for="password">Password</label>
   <input type="password" name="password" id="password" />
 
   <button type="submit">log In</button>
+
 </form>
-</section>`;
+</div>`;
 
   const body = Layout({ title, content });
   res.send(body);

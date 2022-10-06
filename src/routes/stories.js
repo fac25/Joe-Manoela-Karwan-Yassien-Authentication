@@ -18,21 +18,26 @@ function get(req, res) {
   } else {
     const title = "Stories";
     const content = /*html*/ `
-      <div class="">
+      <div class="stories-container">
         <h1>${title}</h1>
         <nav> 
-          <a href="/myStories/${
-            session.user_id
-          }">See your stories and create new tales</a>
+        <div> 
+         <a href= "/stories">Home</a>
+         <a href="/myStories/${session.user_id}">Profile</a>
+         </div>
+
+
           <form method="POST" action="/logout"><button>Log out</button></form>
         </nav>
-        <ul class="">
+
+        
+        <ul class="story-card">
           ${getAllStories()
             .map(
               (story) => `
               <li>
                 <h2>${story.story_title}</h2>
-                <h3>${story.username}</h3>
+                <h3> Author: ${story.username}</h3>
                 <p>${story.actual_story}</p>
               </li>
               `

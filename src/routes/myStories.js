@@ -25,7 +25,8 @@ function get(req, res) {
   }
 
   const form = /*html*/ `
-    <form method="POST" class="">
+
+    <form class="sign-up-form" method="POST" class="">
     <label for="story_title">Tell us your story's title:</label>
     <input type="text" name="story_title" id="story_title">
       
@@ -36,17 +37,22 @@ function get(req, res) {
 
   const title = `My Stories`;
   const content = /*html*/ `
-      <div class="">
+      <div class="stories-container">
         <h1>${title}</h1>
 
         <nav> 
-          <a href="/stories">See everyone else's stories</a>
+        <div>
+          <a href= "/stories">Home</a>
+          <a href="/myStories/${session.user_id}">Profile</a>
+        </div>
+
+      
           <form method="POST" action="/logout"><button>Log out</button></form>
         </nav>
 
-        <section>${form}</section>
+       <div class="sign-up-container"><h1>write your story</h1>${form}</div>
         
-        <ul class="">
+        <ul class="story-card">
           ${getAllMyStories(pageOwners_user_id)
             .map(
               (story) => `
