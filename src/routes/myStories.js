@@ -1,4 +1,4 @@
-const { Layout } = require("../templates.js");
+const { Layout, sanitize } = require("../templates.js");
 const { getAllMyStories } = require("../model/myStories");
 const { getSession } = require("../model/sessions.js");
 const { createStories } = require("../model/stories");
@@ -85,9 +85,9 @@ function post(req, res) {
       `);
   } else {
     createStories(
-      req.body.story_title,
-      req.body.actual_story,
-      req.params.user_id
+      sanitize(req.body.story_title),
+      sanitize(req.body.actual_story),
+      sanitize(req.params.user_id)
     );
     //res.redirect(`/stories`);
     res.redirect(`/myStories/${req.params.user_id}`);

@@ -17,4 +17,8 @@ function Layout({ title, content }) {
   `;
 }
 
-module.exports = { Layout };
+function sanitize(str) {
+  return str.replaceAll('<', '&lt')
+}
+
+module.exports = { Layout, sanitize };
