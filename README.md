@@ -1,6 +1,24 @@
 # Authorise Me
 by _Joe Manoela Karwan Yassien Authentication App | Week 3. Authentication_
 
+## Setup
+
+Make sure you have Git and Node (v18) installed.
+
+1. Clone this repo and `cd` into the directory
+2. Run `npm install` to install all the dependencies
+3. Run `npm run dev` to start the server.  
+   
+This uses the `nodemon` library to auto-restart the server when you save changes. 
+
+This app already has example stories seeded into the database.
+
+## Core Stories
+
+- [x] As a creative user, I want to submit my own stories for others to enjoy.
+- [x] As a nostalgic user, I want to come back to your site later and see the stories I posted are still there. 
+- [x] As a curious user, I want to see stories other authors have posted. 
+- [x] As a self conscious user, I want to be the only person allowed to delete my stuff.
 
 ## Intro
 
@@ -88,23 +106,3 @@ As part of our stretch goals which we did not have time to get to on this sprint
 ###  Was the project a success?
 
 Yes.
-
-
-## Setup
-
-Make sure you have Git and Node (v18) installed.
-
-1. Clone this repo and `cd` into the directory
-2. Run `npm install` to install all the dependencies
-3. Run `npm run dev` to start the server.  
-   
-This uses the `nodemon` library to auto-restart the server when you save changes. 
-
-This app already has example stories seeded into the database.
-
-## Core Stories
-
-- [x] As a creative user, I want to submit my own stories for others to enjoy.
-- [x] As a nostalgic user, I want to come back to your site later and see the stories I posted are still there. 
-- [x] As a curious user, I want to see stories other authors have posted. 
-- [x] As a self conscious user, I want to be the only person allowed to delete my stuff.
