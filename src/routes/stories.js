@@ -23,7 +23,7 @@ function get(req, res) {
         <nav> 
         <div> 
          <a href= "/stories">Home</a>
-         <a href="/myStories/${session.user_id}">Profile</a>
+         <a href="/my-stories/${session.user_id}">Profile</a>
          </div>
 
 

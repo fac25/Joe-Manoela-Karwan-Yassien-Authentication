@@ -30,7 +30,7 @@ function get(req, res) {
     <label for="story_title">Tell us your story's title:</label>
     <input type="text" name="story_title" id="story_title">
       
-    <label for="actual_story">Write your story here:</label>
+    <label for="actual_story">What's your story, user?</label>
       <textarea name="actual_story" rows="4" cols="30"></textarea>
       <button>Share your story!</button>
    </form>`;
@@ -43,7 +43,7 @@ function get(req, res) {
         <nav> 
         <div>
           <a href= "/stories">Home</a>
-          <a href="/myStories/${session.user_id}">Profile</a>
+          <a href="/my-stories/${session.user_id}">Profile</a>
         </div>
 
       
@@ -93,7 +93,7 @@ function post(req, res) {
     if(!req.body.actual_story) {
       return res.send(`
       <h1>Good try! You need to actually write a story please!</h1>
-      <a href="/myStories/${req.params.user_id}">I'm ready to write a story</a>
+      <a href="/my-stories/${req.params.user_id}">I'm ready to write a story</a>
       `)
     }
     createStories(
@@ -102,7 +102,7 @@ function post(req, res) {
       sanitize(req.params.user_id)
     );
     //res.redirect(`/stories`);
-    res.redirect(`/myStories/${req.params.user_id}`);
+    res.redirect(`/my-stories/${req.params.user_id}`);
   }
 }
 
