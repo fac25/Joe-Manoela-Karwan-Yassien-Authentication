@@ -1,4 +1,5 @@
 const { getAllMyStories } = require("./model/myStories")
+const { getAllStories } = require("./model/stories.js");
 
 // Home HTML
 function homeHtml() {
@@ -141,6 +142,56 @@ function emailExistHtml() {
   </p>
   `
 }
+// Stories login to view HTML 
+
+function notLoggedInToStoriesHtml() {
+  return /*html*/ `
+  <h1>Please log-in (or sign-up) first to see all stories:</h1>
+  <nav>
+        <a href="/sign-up">Sign up</a> 
+    or 
+        <a href="/log-in">log in</a>
+  </nav> 
+`
+}
+// Show all stories
+
+function storiesHtml(session_user_id) {
+  
+  const title = "Stories";
+  const content = /*html*/ `
+    <div class="stories-container">
+      <h1>${title}</h1>
+      <nav> 
+      <div> 
+       <a href= "/stories">Home</a>
+       <a href="/my-stories/${session_user_id}">Profile</a>
+       </div>
+
+
+        <form method="POST" action="/logout"><button>Log out</button></form>
+      </nav>
+
+      
+      <ul class="story-card">
+        ${getAllStories()
+          .map(
+            (story) => `
+            <li>
+              <h2>${story.story_title}</h2>
+              <h3> Author: ${story.username}</h3>
+              <p>${story.actual_story}</p>
+            </li>
+            `
+          )
+          .reverse()
+          .join("")}
+      </ul>
+    </div>
+  `;
+
+  return {title, content}
+}
 
 // Layout HTML
 
@@ -185,6 +236,8 @@ module.exports = {
   submitStoryHtml, 
   signUpHtml, 
   emailExistHtml, 
+  notLoggedInToStoriesHtml,
+  storiesHtml,
   Layout, 
   sanitize, 
   validate };
