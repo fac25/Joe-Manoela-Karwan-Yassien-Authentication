@@ -8,7 +8,6 @@ const signUp = require("./routes/sign-up.js");
 const stories = require("./routes/stories.js");
 const myStories = require("./routes/myStories.js");
 const deleteFn = require("./routes/delete.js");
-const users = require("./routes/users.js");
 
 const server = express();
 
